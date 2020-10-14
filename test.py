@@ -60,7 +60,6 @@ def main():
 
 def get_probs(opt):
     os.environ['CUDA_VISIBLE_DEVICES'] = ','.join(str(x) for x in opt.test['gpus'])
-    os.environ['CUDA_VISIBLE_DEVICES'] = '6,7'
 
     model_path = opt.test['model_path']
     save_dir = opt.test['save_dir']
