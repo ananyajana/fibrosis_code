@@ -3,7 +3,6 @@ from torch import nn
 from torchvision import models as torch_models
 import torch.nn.functional as F
 from collections import OrderedDict
-from attention import Self_Attention
 
 class BaselineNet(nn.Module):
     def __init__(self, in_features=1, num_classes=3, pre_train=False):
@@ -47,7 +46,7 @@ class BaselineNet(nn.Module):
 
     def set_fea_extractor(self, chkpt_path):
         print('loading checkpoint model')
-        chkpt = torch.load(chkpt_path)
+        chkpt = torch.load(chkpt_path)['model']
         new_chkpt=OrderedDict()
         for k, v in chkpt.items():
             name = k[7:] # remove module

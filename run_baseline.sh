@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-#dirname='runi_prev'
-#mkdir $dirname
-#mv *.xlsx $dirname
-#mv experiments* $dirname
-for i in {1..5}
+dirname='run_prev_20oct_contextrestore_1k_epoch'
+mkdir $dirname
+mv *.xlsx $dirname
+mv experiments* $dirname
+for i in {1..10}
 do
-ngpus=3
+ngpus=4
 epochs=30
 exp_name='fib'
 exp_num='baseline_1'
@@ -14,10 +14,13 @@ bool_use_resnet=0
 
 pre_train_sup=1
 sup_model='context_restore2'
-chkpt_path='checkpoint_contextrestore2_13oct'
-sup_model_path='./chkpts/'$chkpt_path'/checkpoint_best.pth.tar'
+chkpt_path='checkpoint_contextrestore2_gan_loss_patch_sz_20'
+#sup_model_path='../fibrosis_self_supervision/chkpts/'$chkpt_path'/checkpoint_best.pth.tar'
+sup_model_path='../fibrosis_self_supervision/'$chkpt_path'/checkpoint_best.pth.tar'
 
-data_dir='./data/data_miccai'
+
+#data_dir='../fibrosis_self_supervision/data/data_miccai'
+data_dir='../fibrosis_self_supervision/data/data_miccai_224_lbp'
 img_dir=${data_dir}
 
 for exp_name in 'fib' 'nas_stea' 'nas_lob' 'nas_balloon'
